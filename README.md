@@ -20,7 +20,7 @@ Shows a list of the last played maps. It has console support. It also uses built
 
 ## 📄 Code changes
 If you just want to modify general settings of the plugin:
-- `[ConsoleCommand("css_lastmaps", "css_lastmaps - Last played maps")]` - console command
+- `[ConsoleCommand("css_lastmaps", "Last played maps")]` - console command
 - `[RequiresPermissions("@css/generic")]` - admin access
 - `const int LastMapsMaxElements = 20;` - max queue elements
 
