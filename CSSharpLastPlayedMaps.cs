@@ -51,7 +51,7 @@ namespace CSSharpLastPlayedMaps
             }
         }
 
-        [ConsoleCommand("css_lastmaps", "css_lastmaps - Last played maps")]
+        [ConsoleCommand("css_lastmaps", "Last played maps")]
         [RequiresPermissions("@css/generic")]
         [CommandHelper(whoCanExecute: CommandUsage.CLIENT_AND_SERVER)]
         public void OnLastCommand(CCSPlayerController? Player, CommandInfo commandInfo)
