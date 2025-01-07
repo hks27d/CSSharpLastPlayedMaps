@@ -58,7 +58,7 @@ namespace CSSharpLastPlayedMaps
         {
             if (Player != null && Player.IsValid && Player.PlayerPawn.IsValid && Player.Connected == PlayerConnectedState.PlayerConnected)
             {
-                Player.PrintToChat($" {ChatColors.Red}Modders {ChatColors.Default}- See console for {ChatColors.Green}css_lastmaps {ChatColors.Default}output.");
+                Player.PrintToChat($" {ChatColors.Red}Modders {ChatColors.Default}- See console for {ChatColors.Green}last maps {ChatColors.Default}output.");
                 Player.PrintToConsole("+------------------+");
                 Player.PrintToConsole("| LAST PLAYED MAPS |");
                 Player.PrintToConsole("+------------------+");
