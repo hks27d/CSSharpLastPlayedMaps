@@ -11,13 +11,12 @@ namespace CSSharpLastPlayedMaps
     public class CSSharpLastPlayedMaps : BasePlugin
     {
         public override string ModuleName => "CS# Last Played Maps (console support)";
-        public override string ModuleVersion => "1.0.0";
+        public override string ModuleVersion => "1.0.1";
         public override string ModuleAuthor => "HKS 27D";
         public override string ModuleDescription => "";
 
 #pragma warning disable IDE0044 // Add readonly modifier
         Queue<string> LastMapsQueue = new();
-        Queue<string> LastMapsQueueReversed = new();
 #pragma warning restore IDE0044 // Add readonly modifier
         const int MaxLastMapsElements = 20;
 
@@ -25,30 +24,15 @@ namespace CSSharpLastPlayedMaps
         {
             RegisterListener<Listeners.OnMapStart>(mapName =>
             {
-                DateTime currentDateTime = DateTime.Now;
-                string formattedTime = currentDateTime.ToString("yyyy-MM-dd, HH:mm:ss");
-                AddMapIntoQueue(mapName, formattedTime);
-                LastMapsQueueReversed = new(LastMapsQueue);
-                ReverseQueue(LastMapsQueueReversed);
+                AddMapIntoQueue(mapName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             });
         }
 
         private void AddMapIntoQueue(string map, string fTime)
         {
-            LastMapsQueue.Enqueue($"{map} ({fTime})");
+            LastMapsQueue.Enqueue($"{fTime,19} | {map}");
             if (LastMapsQueue.Count > MaxLastMapsElements)
                 LastMapsQueue.Dequeue();
-        }
-
-        private static void ReverseQueue(Queue<string> queue)
-        {
-            List<string> tempList = new(queue);
-            queue.Clear();
-
-            for (int i = tempList.Count - 1; i >= 0; i--)
-            {
-                queue.Enqueue(tempList[i]);
-            }
         }
 
         [ConsoleCommand("css_lastmaps", "Last played maps")]
@@ -66,12 +50,8 @@ namespace CSSharpLastPlayedMaps
                 if (LastMapsQueue.Count > 0)
                 {
                     int mapCounter = 1;
-
-                    foreach (string QueueElement in LastMapsQueueReversed)
-                    {
-                        Player.PrintToConsole($"{mapCounter}. {QueueElement}");
-                        mapCounter++;
-                    }
+                    foreach (string QueueElement in LastMapsQueue)
+                        Player.PrintToConsole($"{++mapCounter,2} | {QueueElement}");
                 }
                 else
                     Player.PrintToConsole("No recent maps played.");
@@ -85,12 +65,8 @@ namespace CSSharpLastPlayedMaps
                 if (LastMapsQueue.Count > 0)
                 {
                     int mapCounter = 1;
-
-                    foreach (string QueueElement in LastMapsQueueReversed)
-                    {
-                        commandInfo.ReplyToCommand($"{mapCounter}. {QueueElement}");
-                        mapCounter++;
-                    }
+                    foreach (string QueueElement in LastMapsQueue)
+                        commandInfo.ReplyToCommand($"{++mapCounter,2} | {QueueElement}");
                 }
                 else
                     commandInfo.ReplyToCommand("No recent maps played.");
