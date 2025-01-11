@@ -43,13 +43,13 @@ namespace CSSharpLastPlayedMaps
             if (Player != null && Player.IsValid && Player.PlayerPawn.IsValid && Player.Connected == PlayerConnectedState.PlayerConnected)
             {
                 Player.PrintToChat($" {ChatColors.Red}Modders {ChatColors.Default}- See console for {ChatColors.Green}last maps {ChatColors.Default}output.");
-                Player.PrintToConsole("+------------------+");
-                Player.PrintToConsole("| LAST PLAYED MAPS |");
-                Player.PrintToConsole("+------------------+");
 
                 if (LastMapsQueue.Count > 0)
                 {
-                    int mapCounter = 1;
+                    int mapCounter = 0;
+                    Player.PrintToConsole(" # | Date & Time         | Map");
+                    Player.PrintToConsole("------------------------------");
+
                     foreach (string QueueElement in LastMapsQueue)
                         Player.PrintToConsole($"{++mapCounter,2} | {QueueElement}");
                 }
@@ -58,13 +58,12 @@ namespace CSSharpLastPlayedMaps
             }
             else
             {
-                commandInfo.ReplyToCommand("+------------------+");
-                commandInfo.ReplyToCommand("| LAST PLAYED MAPS |");
-                commandInfo.ReplyToCommand("+------------------+");
-
                 if (LastMapsQueue.Count > 0)
                 {
-                    int mapCounter = 1;
+                    int mapCounter = 0;
+                    commandInfo.ReplyToCommand(" # | Date & Time         | Map");
+                    commandInfo.ReplyToCommand("------------------------------");
+
                     foreach (string QueueElement in LastMapsQueue)
                         commandInfo.ReplyToCommand($"{++mapCounter,2} | {QueueElement}");
                 }
