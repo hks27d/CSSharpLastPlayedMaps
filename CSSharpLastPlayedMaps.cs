@@ -32,7 +32,10 @@ namespace CSSharpLastPlayedMaps
         {
             LastMapsQueue.Enqueue($"{fTime,19} | {map}");
             if (LastMapsQueue.Count > MaxLastMapsElements)
+            {
                 LastMapsQueue.Dequeue();
+                LastMapsQueue.TrimExcess();
+            }
         }
 
         [ConsoleCommand("css_lastmaps", "Last played maps")]
