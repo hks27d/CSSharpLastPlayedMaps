@@ -11,7 +11,7 @@ namespace CSSharpLastPlayedMaps
     public class CSSharpLastPlayedMaps : BasePlugin
     {
         public override string ModuleName => "CS# Last Played Maps (console support)";
-        public override string ModuleVersion => "1.0.1";
+        public override string ModuleVersion => "1.0.3";
         public override string ModuleAuthor => "HKS 27D";
         public override string ModuleDescription => "";
 
