@@ -15,9 +15,7 @@ namespace CSSharpLastPlayedMaps
         public override string ModuleAuthor => "HKS 27D";
         public override string ModuleDescription => "";
 
-#pragma warning disable IDE0044 // Add readonly modifier
-        Queue<string> LastMapsQueue = new();
-#pragma warning restore IDE0044 // Add readonly modifier
+        readonly Queue<string> LastMapsQueue = new();
         const int MaxLastMapsElements = 20;
 
         public override void Load(bool hotReload)
