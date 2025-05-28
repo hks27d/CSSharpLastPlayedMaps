@@ -4,7 +4,7 @@
 Get the last played maps.
 
 ## 🌐 Description
-Shows a list of the last played maps. It has console support. It also uses built-in Queues from .NET and a basic func to do queue reversal.
+Shows a list of the last played maps. It has console support. It also uses built-in Queues from .NET.
 
 ## 📗 Dependecies
 - [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp)
